@@ -1,0 +1,16 @@
+{{ if .Values.global.rancher.ingressDNS }}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ template "jenkins.fullname" . }}
+
+spec:
+  rules:
+  - host: jenkins.leszczynskimichal.pl
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: jenkins
+          servicePort: 80
+{{ end }}
